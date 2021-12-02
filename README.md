@@ -11,7 +11,7 @@ node(a).node(b).
 
 Execute:
 ```
-python3 clingo_testRunner exercise1.dl 1
+python3 clingo_testRunner.py exercise1.dl 1
 ```
 
 Checks if the number of models is equal to the `%mnr` comment.
