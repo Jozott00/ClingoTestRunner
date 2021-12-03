@@ -12,7 +12,7 @@ If we want to test a file named `test.dl`, then our test case files must be name
 ---
 
 An example:
-```
+``` prolog
 % inside of ./example/exercise1_0.dl
 
 % mnr: 1
@@ -32,7 +32,8 @@ python3 clingo_testRunner.py example/exercise1.dl 2
 So this command tests the `exercise1.dl` program with the two test cases `exercise1_0.dl` and `exercise1_1.dl` (since the test size is 2).
 
 The result would look like:
-```
+``` shell
+$ python3 clingo_testRunner.py example/exercise1.dl 2
 
   ----------
   Processing example/exercise1_0.dl ...
