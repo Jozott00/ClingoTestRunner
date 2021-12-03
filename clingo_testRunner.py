@@ -71,7 +71,7 @@ def run_test(path, model_size, set_of_sets):
     global succeeded_tests
     global failed_tests
 
-    if actual_model_size is not model_size and model_size != 0:
+    if actual_model_size is not model_size and model_size != -1:
         model_pass = False
         print(
             "❌ FAILED -- %d model(s) found instead of %d"
@@ -108,7 +108,7 @@ def test_for_file(path):
     except FileNotFoundError:
         return print(f"❗ Error: {path} does not exist")
 
-    model_size = 0
+    model_size = -1
     set_with_facts = []
 
     for line in lines:
@@ -119,7 +119,7 @@ def test_for_file(path):
         elif s_anno in line:
             set_with_facts.append(parse_incs(line))
 
-    if model_size == 0:
+    if model_size == -1:
         print("❗ WARNING -- No model size given. This leads to inaccurate tests!")
     else:
         print(f"💡 INFO -- Exactly {model_size} model(s) must be found")
