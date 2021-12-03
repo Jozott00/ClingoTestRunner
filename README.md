@@ -11,18 +11,25 @@ If we want to test a file named `test.dl`, then our test case files must be name
 
 ---
 
+#### Known issues: 
+- For `mnr` greater than 999, the script says failed even if the expected number of models are equal to the result
+
+---
+
 An example:
 ``` prolog
 % inside of ./example/example1_0.dl
 
 % mnr: 1
+% incs: guilty(harry)
+% incs: innocent(sally)
 % incs: guilty(harry) innocent(sally)
 
 motive(harry).
 motive(sally).
 guilty(harry).
 ```
-So we expect the result to contain 1 answer set, and we have specified two subsets that the answer set should contain.
+So we expect the result to contain 1 answer set, and we have specified three subsets that the answer set should contain.
 
 To execute the test we run
 ```
