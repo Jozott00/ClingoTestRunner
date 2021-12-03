@@ -39,7 +39,7 @@ def run_test(path, model_size, set_of_sets):
         output = check_output(cmd, timeout=timeout_seconds)
     except CalledProcessError as e:
         # clingo exists with 30 as retun code
-        if e.returncode != 30:
+        if e.returncode != 30 and e.returncode != 20:
             return print(f"❗ Error: '{' '.join(e.cmd)}' failed")
         else:
             output = e.output
