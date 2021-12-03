@@ -1,7 +1,7 @@
 % #show color/2.
 
 % mnr: 1
-% incs: guilty(harry);innocent(sally)
+% incs: guilty(harry) innocent(sally)
 
 motive(harry).
 motive(sally).

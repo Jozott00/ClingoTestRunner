@@ -28,7 +28,7 @@ def parse_mnr(line, file):
 # Parse INCS annotation
 def parse_incs(line):
     line = line.split(":")[1]
-    line = line.split(";")
+    line = line.split()
     return " ".join(line).split()  # to prevent empty elements
 
 
@@ -113,10 +113,10 @@ def test_for_file(path):
 
     for line in lines:
         # remove whitespaces
-        line = "".join(line.split())
-        if m_anno in line:
+        tmp = "".join(line.split())
+        if m_anno in tmp:
             model_size = parse_mnr(line, path)
-        elif s_anno in line:
+        elif s_anno in tmp:
             set_with_facts.append(parse_incs(line))
 
     if model_size == -1:

@@ -4,7 +4,7 @@ This test runner automates the test process of multiple test cases for an Asp pr
 
 There are two comments in the testcase files that provide information about the expected test results.  
 - `% mnr: N` is the expected number of models/answer sets
-- `% incs: P;[P;..]` while the set of all predicates P must be a subset of at least one answer set
+- `% incs: P [P..]` while the set of all predicates P must be a subset of at least one answer set
 
 
 If we want to test a file named `test.dl`, then our test case files must be named `test_0.dl, test_1.dl, ... , test_n.dl` and be stored in the same directory as the file to be tested.
@@ -16,7 +16,7 @@ An example:
 % inside of ./example/example1_0.dl
 
 % mnr: 1
-% incs: guilty(harry);innocent(sally)
+% incs: guilty(harry) innocent(sally)
 
 motive(harry).
 motive(sally).
