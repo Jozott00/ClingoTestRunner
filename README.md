@@ -13,45 +13,34 @@ If we want to test a file named `test.dl`, then our test case files must be name
 
 An example:
 ``` prolog
-% inside of ./example/exercise1_0.dl
+% inside of ./example/example1_0.dl
 
 % mnr: 1
-% incs: visited(d,1);visited(f,4);visited(b,3);visited(c,5);visited(e,6); visited(a,2)
-% incs: visited(f,4)
+% incs: guilty(harry);innocent(sally)
 
-node(a). node(b). node(c).
-...
+motive(harry).
+motive(sally).
+guilty(harry).
 ```
 So we expect the result to contain 1 answer set, and we have specified two subsets that the answer set should contain.
 
 To execute the test we run
 ```
-python3 clingo_testRunner.py example/exercise1.dl 2
+python3 clingo_testRunner.py example/example1.dl 1
 ```
 
-So this command tests the `exercise1.dl` program with the two test cases `exercise1_0.dl` and `exercise1_1.dl` (since the test size is 2).
+So this command tests the `example1.dl` program with the two test cases `example1_0.dl` (since the test size is 1).
 
 The result would look like:
 ``` shell
-$ python3 clingo_testRunner.py example/exercise1.dl 2
+$ python3 clingo_testRunner.py example/example1.dl 2
 
   ----------
-  Processing example/exercise1_0.dl ...
+  Processing example/example1_0.dl ...
   ---------
   
-💡 INFO -- Exactly 1 model must be found
-💡 INFO -- Result must include visited(d,1) visited(f,4) visited(b,3) visited(c,5) visited(e,6) visited(a,2)
-💡 INFO -- Result must include visited(f,4)
-
-    🏃 Test running ...
-  
-✅ PASSED -- All models and sets passed the test
-
-  ----------
-  Processing example/exercise1_1.dl ...
-  ---------
-  
-💡 INFO -- Exactly 2 models must be found
+💡 INFO -- Exactly 1 model(s) must be found
+💡 INFO -- Result must include guilty(harry) innocent(sally)
 
     🏃 Test running ...
   

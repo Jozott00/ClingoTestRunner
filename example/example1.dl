@@ -1,0 +1,2 @@
+% encoding
+innocent(Suspect) :- motive(Suspect), not guilty(Suspect).
