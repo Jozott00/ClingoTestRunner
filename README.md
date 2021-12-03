@@ -12,7 +12,7 @@ If we want to test a file named `test.dl`, then our test case files must be name
 ---
 
 #### Known issues: 
-- For `mnr` greater than 999, the script says failed even if the expected number of models are equal to the result
+- If `mnr` is greater than **999**, the script reports "failed", even if the expected number of models corresponds to the result
 
 ---
 
