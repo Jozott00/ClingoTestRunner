@@ -26,7 +26,8 @@ def parse_mnr(line, file):
 # Parse INCS annotation
 def parse_incs(line):
     line = line.split(":")[1]
-    return line.split(";")
+    line = line.split(";")
+    return " ".join(line).split()  # to prevent empty elements
 
 
 def run_test(path, model_size, set_of_sets):
@@ -71,7 +72,7 @@ def run_test(path, model_size, set_of_sets):
     if actual_model_size is not model_size and model_size != 0:
         model_pass = False
         print(
-            "❌ FAILED -- %d models found instead of %d"
+            "❌ FAILED -- %d model(s) found instead of %d"
             % (actual_model_size, model_size)
         )
 
@@ -119,14 +120,14 @@ def test_for_file(path):
     if model_size == 0:
         print("❗ WARNING -- No model size given. This leads to inaccurate tests!")
     else:
-        print(f"💡 INFO -- Exactly {model_size} models must be found")
+        print(f"💡 INFO -- Exactly {model_size} model(s) must be found")
 
     for s in set_with_facts:
         print(f"💡 INFO -- Result must include {' '.join(s)}")
 
     print(
         f"""
-    🏃 Tests running ...
+    🏃 Test running ...
   """
     )
 
