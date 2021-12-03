@@ -9,6 +9,8 @@ file_name = None
 failed_tests = 0
 succeeded_tests = 0
 
+timeout_seconds = 10
+
 
 def error_exit(reason):
     print("❌ [%s] Error: %s" % (sys.argv[0], reason))
@@ -34,7 +36,7 @@ def run_test(path, model_size, set_of_sets):
     cmd = ["clingo", "-n", "0", path, file_name]
 
     try:
-        output = check_output(cmd, timeout=2)
+        output = check_output(cmd, timeout=timeout_seconds)
     except CalledProcessError as e:
         # clingo exists with 30 as retun code
         if e.returncode != 30:
@@ -43,7 +45,7 @@ def run_test(path, model_size, set_of_sets):
             output = e.output
     except TimeoutExpired as e:
         return print(
-            f"❗ Error: '{' '.join(e.cmd)}' failed because timeout of 2s was expired"
+            f"❗ Error: '{' '.join(e.cmd)}' failed because timeout of {timeout_seconds}s was expired"
         )
 
     output = output.decode("utf-8").split("\n")
@@ -140,6 +142,14 @@ def main():
         "file", metavar="FILE", type=str, nargs=1, help=".dl file to test"
     )
     parser.add_argument(
+        "-t",
+        "--timeout",
+        metavar="T",
+        type=int,
+        nargs=1,
+        help="timeout per test in seconds",
+    )
+    parser.add_argument(
         "size",
         metavar="SIZE",
         type=int,
@@ -150,7 +160,12 @@ def main():
     args = parser.parse_args()
 
     global file_name
+    global timeout_seconds
     file_name = args.file[0]
+
+    tmp = args.timeout
+    if tmp is not None:
+        timeout_seconds = int(tmp[0])
 
     if not os.path.isfile(file_name):
         error_exit(f"File {file_name} does not exist")
