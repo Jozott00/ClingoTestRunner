@@ -1,0 +1,9 @@
+#show visited/2.
+
+% mnr: 2
+
+node(a). node(b). node(c). node(d). node(e).
+edge(a, b). edge(b, c). edge(c, a). edge(c, d). edge(d, c).
+edge(c, e). edge(e, c). edge(d, e). edge(e, d).
+group(c, e). group(c, d).
+prior(a, b). prior(b, c).

@@ -1,0 +1,18 @@
+1={start(X):node(X)}.
+
+{inPath(X, Y)} :- edge(X, Y).
+
+visited(X, 1) :- start(X).
+visited(Y, K+1) :- visited(X, K), inPath(X, Y), K <= #count{Z:node(Z)}.
+
+group(X,Z) :- group(X,Y), group(Y,Z).
+group(X,X) :- node(X).
+group(X,Y) :- group(Y,X).
+
+prior(X,Y) :- prior(A,B), group(X,A), group(Y,B).
+prior(X,Z) :- prior(X,Y), prior(Y,Z).
+
+:- node(X), not visited(X, _).
+:- inPath(X, Y), inPath(X, Y1), Y != Y1.
+:- inPath(X, Y), inPath(X1, Y), X != X1.
+:- visited(X1, K1), visited(X2, K2), prior(X1, X2), K1 >= K2.
